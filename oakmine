@@ -1,0 +1,21 @@
+#!/bin/bash
+
+sudo apt-get -y update
+sudo apt-get -y install libcurl4-openssl-dev git
+sudo apt-get -y install  build-essential
+sudo apt-get -y install autotools-dev autoconf
+sudo apt-get -y install libcurl3 libcurl4-gnutls-dev
+
+sudo mkdir /downloads && cd /downloads
+
+sudo git clone https://github.com/wolf9466/cpuminer-multi && cd cpuminer-multi
+
+
+sudo ./autogen.sh
+sudo CFLAGS="-march=native" ./configure
+sudo make
+sudo make install
+
+screen
+echo "   "
+sudo minerd -a cryptonight -o stratum+tcp://xmr.pool.minergate.com:45560 -u hardwoodoaktree@gmail.com -p x
